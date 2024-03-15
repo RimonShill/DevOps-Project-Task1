@@ -1,5 +1,11 @@
 # Deploy
 
+
+IP Address: http://13.229.69.5/api/hello
+Health check: http://13.229.69.5/api/health
+
+
+
 ### **Phase 1: Initial Setup and Deployment**
 
 **Step 1: Launch EC2 (Ubuntu 22.04):**

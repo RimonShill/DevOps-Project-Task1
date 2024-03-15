@@ -13,7 +13,7 @@
 - Clone your application's code repository onto the EC2 instance:
     
     ```bash
-    git clone https://github.com/N4si/DevSecOps-Project.git
+    git clone https://github.com/RimonShill/DevOps-Project-Task1.git
     ```
     
 
@@ -33,12 +33,12 @@
 - Build and run your application using Docker containers:
     
     ```bash
-    docker build -t netflix .
-    docker run -d --name netflix -p 8081:80 netflix:latest
+    docker build -t task .
+    docker run -d --name task -p 80:80 task:latest
     
     #to delete
     docker stop <containerid>
-    docker rmi -f netflix
+    docker rmi -f task
     ```
 
 It will show an error cause you need API key
@@ -167,13 +167,13 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/N4si/DevSecOps-Project.git'
+                git branch: 'main', url: 'https://github.com/RimonShill/DevOps-Project-Task1.git'
             }
         }
         stage("Sonarqube Analysis") {
             steps {
                 withSonarQubeEnv('sonar-server') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Task \
                     -Dsonar.projectKey=Netflix'''
                 }
             }
@@ -257,13 +257,13 @@ pipeline{
         }
         stage('Checkout from Git'){
             steps{
-                git branch: 'main', url: 'https://github.com/N4si/DevSecOps-Project.git'
+                git branch: 'main', url: 'https://github.com/RimonShill/DevOps-Project-Task1.git'
             }
         }
         stage("Sonarqube Analysis "){
             steps{
                 withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Task \
                     -Dsonar.projectKey=Netflix '''
                 }
             }
@@ -296,20 +296,20 @@ pipeline{
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
                        sh "docker build --build-arg TMDB_V3_API_KEY=<yourapikey> -t netflix ."
-                       sh "docker tag netflix nasi101/netflix:latest "
-                       sh "docker push nasi101/netflix:latest "
+                       sh "docker tag task 6164118899/task:latest "
+                       sh "docker push 6164118899/task:latest "
                     }
                 }
             }
         }
         stage("TRIVY"){
             steps{
-                sh "trivy image nasi101/netflix:latest > trivyimage.txt" 
+                sh "trivy image 6164118899/task:latest > trivyimage.txt" 
             }
         }
         stage('Deploy to container'){
             steps{
-                sh 'docker run -d --name netflix -p 8081:80 nasi101/netflix:latest'
+                sh 'docker run -d --name task -p 80:80 6164118899/task:latest'
             }
         }
     }

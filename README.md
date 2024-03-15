@@ -1,8 +1,8 @@
 # Deploy
 
 
-IP Address: http://13.229.69.5/api/hello
-Health check: http://13.229.69.5/api/health
+- IP Address: http://13.229.69.5/api/hello
+- Health check: http://13.229.69.5/api/health
 
 
 

@@ -180,7 +180,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar-server') {
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Task \
-                    -Dsonar.projectKey=Netflix'''
+                    -Dsonar.projectKey=Task'''
                 }
             }
         }
@@ -270,7 +270,7 @@ pipeline{
             steps{
                 withSonarQubeEnv('sonar-server') {
                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Task \
-                    -Dsonar.projectKey=Netflix '''
+                    -Dsonar.projectKey=Task '''
                 }
             }
         }
